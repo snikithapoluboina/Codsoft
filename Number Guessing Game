@@ -1,0 +1,49 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+
+        int score = 0;
+        char playAgain;
+
+        do {
+            int number = rand.nextInt(100) + 1;
+            int attempts = 0;
+            int maxAttempts = 10;
+
+            System.out.println("\nNUMBER GUESSING GAME");
+            System.out.println("Guess a number between 1 and 100");
+
+            while (attempts < maxAttempts) {
+                System.out.print("Enter guess: ");
+                int guess = sc.nextInt();
+                attempts++;
+
+                if (guess == number) {
+                    System.out.println("Correct! You guessed it in " + attempts + " attempts.");
+                    score++;
+                    break;
+                } else if (guess < number) {
+                    System.out.println("Too Low!");
+                } else {
+                    System.out.println("Too High!");
+                }
+            }
+
+            if (attempts == maxAttempts) {
+                System.out.println("Out of attempts! Number was " + number);
+            }
+
+            System.out.println("Score: " + score);
+            System.out.print("Play again? (Y/N): ");
+            playAgain = sc.next().charAt(0);
+
+        } while (playAgain == 'Y' || playAgain == 'y');
+
+        System.out.println("Final Score: " + score);
+        sc.close();
+    }
+}
